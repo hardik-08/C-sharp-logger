@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace MainApp
-{
-     class DirectoryInformation
+    namespace MainApp
     {
-
-        private string path;
-
-        public string Path
+         class DirectoryInformation
         {
-            get { return path; }
-            set { path = value; }
-        }
+
+            private string path;
+
+            public string Path
+            {
+                get { return path; }
+                set { path = value; }
+            }
 
 
-        public DirectoryInformation(string path)
-        {
-            this.Path = path;
-        }
+            public DirectoryInformation(string path)
+            {
+                this.Path = path;
+            }
        
+        }
     }
-}
