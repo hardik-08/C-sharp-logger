@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainApp
+namespace Logger
 {
-    public class DirectoryLogger
+    class DirectoryLogger
     {
 
         private string path;
@@ -21,7 +21,7 @@ namespace MainApp
         }
 
 
-        public DirectoryLogger(string path,string logPath)
+        public DirectoryLogger(string path, string logPath)
         {
             this.Path = path;
             this.LogPath = logPath;
