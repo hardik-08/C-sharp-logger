@@ -30,8 +30,22 @@ namespace Logger
             eventLog_1.Source = "MySource";
             eventLog_1.Log = "MyNewLog";
             eventLog_1.WriteEntry("In OnStart");
-            DirectoryLogger directoryInfo = new DirectoryLogger(@"F:\capturered", @"F:\hello.txt");
+            SetUpWatchers();
+            
 
+
+        }
+
+        private void SetUpWatchers()
+        {
+            string line;
+            System.IO.StreamReader file = new System.IO.StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelist.txt");
+            while (( line = file.ReadLine()) != null)
+            {
+                DirectoryLogger directoryInfo = new DirectoryLogger(line, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelog.txt");
+                
+            }
+            file.Close();
 
         }
 

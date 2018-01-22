@@ -17,8 +17,8 @@ namespace MainApp
             {
                 Console.WriteLine("It is a directory!");
                 string LogPath = Console.ReadLine();
-                DirectoryLogger directoryInfo = new DirectoryLogger(directory,LogPath);
-                Console.WriteLine("You have chosen : "+directoryInfo.Path+" We are now listening to it!");
+                
+                
                 
             }
             else
