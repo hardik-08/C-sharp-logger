@@ -50,7 +50,7 @@ namespace MainApp
 
             using (StreamWriter sw = File.AppendText(LogPath))
             {
-                sw.Write("Logged at {0} : ", DateTime.Now.ToString("h:mm:ss tt"));
+                sw.Write("Logged at {0} : ", DateTime.Now.ToString(@"dd/MM/yyyy HH:mm:ss"));
                 sw.Write(" CHANGED, NAME: " + e.Name);
                 sw.Write(" CHANGED, FULLPATH: " + e.FullPath);
                 sw.WriteLine(" WHAT HAPPENED? :" + e.ChangeType);

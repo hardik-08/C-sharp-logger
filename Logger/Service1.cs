@@ -9,12 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MainApp;
 
-namespace Logger
+namespace MainApp
 {
     public partial class Service1 : ServiceBase
     {
         private EventLog eventLog_1;
-
+        public string FileList = FileLocation.FileList;
+        public string FileLog = FileLocation.FileLog;
         public Service1()
         {
             InitializeComponent();
@@ -31,18 +32,16 @@ namespace Logger
             eventLog_1.Log = "MyNewLog";
             eventLog_1.WriteEntry("In OnStart");
             SetUpWatchers();
-            
-
-
+           
         }
 
         private void SetUpWatchers()
         {
             string line;
-            System.IO.StreamReader file = new System.IO.StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelist.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader(FileList);
             while (( line = file.ReadLine()) != null)
             {
-                DirectoryLogger directoryInfo = new DirectoryLogger(line, Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelog.txt");
+                DirectoryLogger directoryInfo = new DirectoryLogger(line, FileLog);
                 
             }
             file.Close();

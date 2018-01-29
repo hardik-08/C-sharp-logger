@@ -1,4 +1,4 @@
-﻿namespace Logger
+﻿namespace MainApp
 {
     partial class Service1
     {
