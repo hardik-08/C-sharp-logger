@@ -35,13 +35,13 @@ namespace MainApp
 
             for(int i=0;i<lines.Length;i++)
             {
-                Console.WriteLine("{0}. {1}",(i+1) ,lines[i]);
+                Console.WriteLine("{0}. {1} ",(i+1) ,lines[i]);
             }
 
 
             while (true)
             {
-                Console.WriteLine("1. Add watcher to dir  \n 2. Remove Watcher from dir \n 3. Exit");
+                Console.WriteLine("1. Add watcher to dir  \n 2. Remove Watcher from dir \n  3. View Log \n  4. Exit");
                 switch(Int32.Parse(Console.ReadLine()))
                 {
                     case 1:
@@ -61,7 +61,21 @@ namespace MainApp
                         int index = Int32.Parse(Console.ReadLine());
                         File.WriteAllLines(FileList,File.ReadLines(FileList).Where(l => l != lines[index-1]).ToList());
                         break;
-                    case 3: 
+                    case 3:
+                        Console.WriteLine("Select file number to view");
+                         index = Int32.Parse(Console.ReadLine());
+                         string hash = SHA1Hash.GetHash(FileLocation.FileLog + lines[index-1]);
+                           using (System.IO.StreamReader file = new System.IO.StreamReader(FileLocation.FileLog + hash))
+                            {
+                                while ((line = file.ReadLine()) != null)
+                                {
+                                    Console.WriteLine(line);
+
+                                }
+                            }
+                       
+                        break;
+                    case 4: 
                     default: break;
                 }
 

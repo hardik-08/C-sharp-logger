@@ -46,8 +46,10 @@ namespace MainApp
             //Console.WriteLine("CHANGED, NAME: " + e.Name);
             //Console.WriteLine("CHANGED, FULLPATH: " + e.FullPath);
             //Console.WriteLine("WHAT HAPPENED? :" + e.ChangeType);
-            
-
+                if (!File.Exists(LogPath))
+                    using (File.Create(LogPath));
+                
+                     
             using (StreamWriter sw = File.AppendText(LogPath))
             {
                 sw.Write("Logged at {0} : ", DateTime.Now.ToString(@"dd/MM/yyyy HH:mm:ss"));

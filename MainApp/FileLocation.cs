@@ -20,7 +20,7 @@ namespace MainApp
         static FileLocation()
         {
             FileList = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelist.txt";
-            FileLog = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\filelog.txt";
+            FileLog = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\logger\files\";
         }
 
     }

@@ -39,10 +39,17 @@ namespace MainApp
         {
             string line;
             System.IO.StreamReader file = new System.IO.StreamReader(FileList);
-            while (( line = file.ReadLine()) != null)
+            if (!System.IO.Directory.Exists(FileLog))
+                System.IO.Directory.CreateDirectory(FileLog);
+
+
+
+            while ((line = file.ReadLine()) != null)
             {
-                DirectoryLogger directoryInfo = new DirectoryLogger(line, FileLog);
-                
+                string hash = SHA1Hash.GetHash(FileLog + line);
+
+                DirectoryLogger directoryInfo = new DirectoryLogger(line, FileLog + hash);
+
             }
             file.Close();
 
