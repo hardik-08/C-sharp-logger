@@ -12,19 +12,11 @@ namespace MainApp
     class Program
     {
         private const string SERVICE_NAME = "loggerService";
-        
+
 
         static void Main(string[] args)
         {
-                 using (ServiceController sc = new ServiceController(SERVICE_NAME))
-                 {
-                 if(sc.Status == ServiceControllerStatus.Running)
-                 {
-                    Console.WriteLine("Service is active.");
-                 }
-                 else
-                    Console.WriteLine("Service is inactive.");
-                 }
+            Console.WriteLine("Service is active : {0}",ServiceUtility.IsServiceRunning(SERVICE_NAME));
             Console.WriteLine("Currently listening to :");
             string line;
             int count=0;
@@ -47,24 +39,33 @@ namespace MainApp
                     case 1:
                         Console.WriteLine("Enter directory to be logged");
                         string newDir = Console.ReadLine();
-                        if (Directory.Exists(newDir))
+                        if (!lines.Contains(newDir))
                         {
-
-                            using (StreamWriter sw = File.AppendText(FileLocation.FileList))
+                            if (Directory.Exists(newDir))
                             {
-                                sw.WriteLine(newDir);
+
+                                using (StreamWriter sw = File.AppendText(FileLocation.FileList))
+                                {
+                                    sw.WriteLine(newDir);
+                                }
                             }
                         }
+                        else
+                            Console.WriteLine("We are already Listening!");
+                        
                         break;
                     case 2:
                         Console.WriteLine("Select file number to delete");
                         int index = Int32.Parse(Console.ReadLine());
                         File.WriteAllLines(FileList,File.ReadLines(FileList).Where(l => l != lines[index-1]).ToList());
+                        string hash = SHA1Hash.GetHash(FileLocation.FileLog + lines[index-1]);
+                        if (File.Exists(FileLocation.FileLog + hash))
+                            File.Delete(FileLocation.FileLog + hash);
                         break;
                     case 3:
                         Console.WriteLine("Select file number to view");
                          index = Int32.Parse(Console.ReadLine());
-                         string hash = SHA1Hash.GetHash(FileLocation.FileLog + lines[index-1]);
+                          hash = SHA1Hash.GetHash(FileLocation.FileLog + lines[index-1]);
                            using (System.IO.StreamReader file = new System.IO.StreamReader(FileLocation.FileLog + hash))
                             {
                                 while ((line = file.ReadLine()) != null)
@@ -92,24 +93,8 @@ namespace MainApp
 
 
             }
-            try
-            {
-                using (ServiceController service = new ServiceController(SERVICE_NAME))
-                {
-                   
-                    service.Stop();
-
-                    service.WaitForStatus(desiredStatus: ServiceControllerStatus.Stopped);
-
-               
-                    
-                    service.Start();
-                    service.WaitForStatus(desiredStatus: ServiceControllerStatus.Running);
-                    Console.WriteLine("Service Restarted");
-                }
-            }
-
-            finally { Console.ReadLine();}
+            Console.WriteLine(ServiceUtility.RestartService(SERVICE_NAME));
+            Console.ReadLine();
         }
 
         
