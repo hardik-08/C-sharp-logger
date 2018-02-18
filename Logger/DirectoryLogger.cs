@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainApp
+namespace Logger
 {
-    public class DirectoryLogger
+    class DirectoryLogger
     {
 
         private string path;
@@ -21,7 +21,7 @@ namespace MainApp
         }
 
 
-        public DirectoryLogger(string path,string logPath)
+        public DirectoryLogger(string path, string logPath)
         {
             this.Path = path;
             this.LogPath = logPath;
@@ -46,13 +46,9 @@ namespace MainApp
             //Console.WriteLine("CHANGED, NAME: " + e.Name);
             //Console.WriteLine("CHANGED, FULLPATH: " + e.FullPath);
             //Console.WriteLine("WHAT HAPPENED? :" + e.ChangeType);
-                if (!File.Exists(LogPath))
-                    using (File.Create(LogPath));
-                
-                     
             using (StreamWriter sw = File.AppendText(LogPath))
             {
-                sw.Write("Logged at {0} : ", DateTime.Now.ToString(@"dd/MM/yyyy HH:mm:ss"));
+                sw.Write("Logged at {0} : ", DateTime.Now.ToString("h:mm:ss tt"));
                 sw.Write(" CHANGED, NAME: " + e.Name);
                 sw.Write(" CHANGED, FULLPATH: " + e.FullPath);
                 sw.WriteLine(" WHAT HAPPENED? :" + e.ChangeType);
