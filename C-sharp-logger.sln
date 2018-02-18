@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "MainApp\MainApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{D47CDD7B-325D-4070-BB11-E56B6F04DA94}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{AA4782C0-EE97-4E0D-968D-87B66C86A394}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,17 +21,11 @@ Global
 		{D47CDD7B-325D-4070-BB11-E56B6F04DA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D47CDD7B-325D-4070-BB11-E56B6F04DA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D47CDD7B-325D-4070-BB11-E56B6F04DA94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA4782C0-EE97-4E0D-968D-87B66C86A394}.Debug|Any CPU.ActiveCfg = Debug
-		{AA4782C0-EE97-4E0D-968D-87B66C86A394}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69295814-A33E-4D8B-B266-98ACF6FDD9D0}
-	EndGlobalSection
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 EndGlobal
